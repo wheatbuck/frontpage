@@ -14,6 +14,12 @@
   <strong>Uri:</strong>
   <%= @site.uri %>
 </p>
+  <strong>Entries:</strong><br />
+  <% @feed.entries.each do |entry| %>
+    <%= link_to entry.title, entry.url %><br />
+    <%= truncate(strip_tags(entry.content), length: 360) %><br />
+  <% end %>
+<p>
 
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>

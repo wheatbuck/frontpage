@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
-
+  Feedjira::Feed.add_common_feed_element("content")
   # GET /sites
   # GET /sites.json
   def index
@@ -10,6 +10,7 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
+    @feed = Feedjira::Feed.fetch_and_parse @site.uri
   end
 
   # GET /sites/new
